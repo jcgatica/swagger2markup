@@ -222,14 +222,14 @@ public abstract class MarkupDocumentBuilder {
 
                 MarkupDocBuilder propertyNameContent = copyMarkupDocBuilder();
                 propertyNameContent.boldTextLine(propertyName, true);
-                if (isTrue(property.getRequired()))
-                    propertyNameContent.italicText(FLAGS_REQUIRED.toLowerCase());
-                else
-                    propertyNameContent.italicText(FLAGS_OPTIONAL.toLowerCase());
                 if (isTrue(property.getReadOnly())) {
                     propertyNameContent.newLine(true);
                     propertyNameContent.italicText(FLAGS_READ_ONLY.toLowerCase());
-                }
+                } else if (isTrue(property.getRequired()))
+                    propertyNameContent.italicText(FLAGS_REQUIRED.toLowerCase());
+                else
+                    propertyNameContent.italicText(FLAGS_OPTIONAL.toLowerCase());
+
                 
                 MarkupDocBuilder descriptionContent = copyMarkupDocBuilder();
                 String description = defaultString(swaggerMarkupDescription(property.getDescription()));
